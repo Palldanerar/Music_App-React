@@ -6,7 +6,7 @@ interface MusicTextProps {
 
 const MusicText = ({ text }: MusicTextProps) => {
   return (
-    <div>
+    <div className='h-full overflow-auto'>
         {text.split("/").map((line: String) => <p>{line}</p>)}
     </div>
   )

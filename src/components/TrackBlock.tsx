@@ -13,7 +13,7 @@ const TrackBlock = ({ track }: TrackBlockProps) => {
     const [isText, setIsText] = useState(false)
 
     return (
-        <div className='h-full overflow-auto bg-green-300 flex flex-col'>
+        <div className='h-full bg-green-300 flex flex-col'>
 
             <button onClick={() => setIsText(!isText)}>Показать текст</button>
 
