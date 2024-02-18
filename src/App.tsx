@@ -8,18 +8,20 @@ function App() {
   const [tracks, setTracks] = useState(tracksList)
   const [activeTrack, setActiveTrack] = useState()
 
+  console.log(tracks)
+
   const changeTrack = (track) => {
     setActiveTrack(track)
   }
 
   return (
     <div className="w-full h-screen bg-slate-600 flex">
-      <div className="w-1/3">
-        <ListTrack changeTrack={changeTrack} tracks={tracks} />
-      </div>
-      <div className="w-2/3">
-        {activeTrack ? <TrackBlock track={activeTrack} /> : <h2>Выберете трек</h2>}
-      </div>
+        <div className="w-1/3">
+          <ListTrack changeTrack={changeTrack} tracks={tracks} />
+        </div>
+        <div className="w-2/3">
+          {activeTrack ? <TrackBlock track={activeTrack} /> : <h2>Выберете трек</h2>}
+        </div>
     </div>
   )
 }

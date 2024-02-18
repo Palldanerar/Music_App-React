@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import ITrack from '../interface/ITrack'
+import PlayerBlock from './PlayerBlock'
+import MusicText from './MusicText'
 
 interface TrackBlockProps {
     track: ITrack
@@ -8,13 +10,14 @@ interface TrackBlockProps {
 
 const TrackBlock = ({ track }: TrackBlockProps) => {
 
+    const [isText, setIsText] = useState(false)
+
     return (
-        <div className='w-full h-full bg-green-300'>
-            <h2>{track.title}</h2>
-            <img src={track.cover} alt="" width="300px" height="300px" />
-            <div>
-                <audio controls src={track.file}></audio>
-            </div>
+        <div className='h-full overflow-auto bg-green-300 flex flex-col'>
+
+            <button onClick={() => setIsText(!isText)}>Показать текст</button>
+
+            {isText ? <MusicText text={track.text} /> : <PlayerBlock track={track} />}
         </div>
     )
 }
