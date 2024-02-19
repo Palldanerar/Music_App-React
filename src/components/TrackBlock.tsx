@@ -12,12 +12,13 @@ const TrackBlock = ({ track }: TrackBlockProps) => {
 
     const [isText, setIsText] = useState(false)
 
+    const hiddenText = () => {
+        setIsText(!isText)
+    }
+
     return (
-        <div className='h-full bg-green-300 flex flex-col'>
-
-            <button onClick={() => setIsText(!isText)}>Показать текст</button>
-
-            {isText ? <MusicText text={track.text} /> : <PlayerBlock track={track} />}
+        <div className='h-full flex flex-col'>
+            {isText ? <MusicText hiddenText={hiddenText} text={track.text} /> : <PlayerBlock hiddenText={hiddenText} track={track} />}
         </div>
     )
 }

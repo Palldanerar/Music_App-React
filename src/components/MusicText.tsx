@@ -1,13 +1,15 @@
 import React from 'react'
 
 interface MusicTextProps {
-    text: String
+  text: String
+  hiddenText(): void,
 }
 
-const MusicText = ({ text }: MusicTextProps) => {
+const MusicText = ({ text, hiddenText }: MusicTextProps) => {
   return (
-    <div className='h-full overflow-auto'>
-        {text.split("/").map((line: String) => <p>{line}</p>)}
+    <div className='h-full text_bg overflow-auto'>
+      <div onClick={() => hiddenText()} className='w-[40px] h-[40px] bg-red-200'>X</div>
+      {text.split("/").map((line: String) => <p>{line}</p>)}
     </div>
   )
 }
