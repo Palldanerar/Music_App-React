@@ -4,12 +4,14 @@ import TrackBlock from "./components/TrackBlock"
 import { tracksList } from "../tracks.ts"
 import ITrack from "./interface/ITrack.ts"
 import Header from "./components/Header.tsx"
-import Footer from "./components/Footer.tsx"
+import Sidebar from "./components/Sidebar.tsx"
+import Player from "./components/Player.tsx"
 
 function App() {
 
   const [tracks, setTracks] = useState<ITrack[]>(tracksList)
   const [activeTrack, setActiveTrack] = useState<ITrack>()
+  const [activeBlock, setActiveBlock] = useState("Main")
 
   const changeTrack = (track: ITrack) => {
     setActiveTrack(track)
@@ -19,13 +21,14 @@ function App() {
     <div className="w-full h-screen bg-slate-600">
       <Header />
       <div className="w-full flex music_block">
-        <div className="w-1/3">
-          <ListTrack changeTrack={changeTrack} tracks={tracks} />
+        <div className="w-1/5">
+          <Sidebar />
         </div>
-        <div className="w-2/3">
-          {activeTrack ? <TrackBlock track={activeTrack} /> : <h2>Выберете трек</h2>}
+        <div className="w-4/5">
+          <ListTrack tracks={tracks} changeTrack={changeTrack} />
         </div>
       </div>
+      <Player track={activeTrack} />
     </div>
   )
 }

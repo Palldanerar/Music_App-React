@@ -1,13 +1,18 @@
 import React from 'react'
 import ITrack from '../interface/ITrack'
 
-const ListTrack = ({ changeTrack, tracks }: any) => {
+interface ListTrake {
+    tracks: ITrack[],
+    changeTrack(track: ITrack): void
+}
+
+const ListTrack = ({ changeTrack, tracks }: ListTrake) => {
     return (
-        <div className='w-full h-full flex flex-col gap-y-3 p-2 bg-red-300'>
+        <div className='w-full h-full gap-x-3 overflow-auto gap-y-2 p-4 flex flex-wrap bg-red-800'>
             {tracks.map((track: ITrack) => {
                 return (
-                    <div className='flex items-center text-2xl cursor-pointer' onClick={() => changeTrack(track)}>
-                        <img className='rounded mr-4' src={track.cover} width={60} height={60} />
+                    <div className='flex flex-col items-center p-4 cursor-pointer' onClick={() => changeTrack(track)}>
+                        <img className='rounded' src={track.cover} width={200} height={200} />
                         <h2>{track.title}</h2>
                     </div>
                 )
