@@ -32,7 +32,7 @@ function App() {
         <div className="w-4/5">
           <Routes>
             <Route path="/" element={<ListTrack tracks={tracks} changeTrack={changeTrack} />} />
-            <Route path="/search" element={<Search />} />
+            <Route path="/search" element={<Search tracks={tracks} changeTrack={changeTrack} />} />
             <Route path="/library" element={<Library />} />
             <Route path="/track" element={<TrackBlock track={activeTrack} />} />
           </Routes>
