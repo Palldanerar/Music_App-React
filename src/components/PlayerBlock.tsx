@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import ITrack from '../interface/ITrack'
 
 interface PlayerBlockProps {
-    track: ITrack,
+    track: ITrack | undefined,
     hiddenText(): void,
 }
 

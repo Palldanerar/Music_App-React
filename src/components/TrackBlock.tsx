@@ -4,7 +4,7 @@ import PlayerBlock from './PlayerBlock'
 import MusicText from './MusicText'
 
 interface TrackBlockProps {
-    track: ITrack
+    track: ITrack | undefined;
 }
 
 
