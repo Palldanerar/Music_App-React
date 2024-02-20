@@ -8,11 +8,11 @@ interface ListTrake {
 
 const ListTrack = ({ changeTrack, tracks }: ListTrake) => {
     return (
-        <div className='w-full h-full gap-x-3 overflow-auto gap-y-2 p-4 flex flex-wrap bg-red-800'>
+        <div className='w-full h-full gap-x-3 overflow-auto gap-y-2 p-4 flex flex-wrap justify-center bg-red-800'>
             {tracks.map((track: ITrack) => {
                 return (
                     <div className='flex flex-col items-center p-4 cursor-pointer' onClick={() => changeTrack(track)}>
-                        <img className='rounded' src={track.cover} width={200} height={200} />
+                        <img className='rounded' src={track.cover} width={250} height={250} />
                         <h2>{track.title}</h2>
                     </div>
                 )

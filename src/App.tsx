@@ -9,8 +9,7 @@ import Player from "./components/Player.tsx"
 import { Route, Routes } from "react-router-dom"
 import Search from "./components/Search.tsx"
 import Library from "./components/Library.tsx"
-import PlayerBlock from "./components/PlayerBlock.tsx"
-import MusicText from "./components/MusicText.tsx"
+
 
 function App() {
 
