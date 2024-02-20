@@ -22,7 +22,7 @@ function App() {
   }
 
   return (
-    <div className="w-full h-screen bg-slate-600">
+    <div className="w-full h-screen bg-[#121212]">
       <Header />
       <div className="w-full flex music_block">
         <div className="w-1/5">

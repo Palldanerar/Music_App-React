@@ -10,7 +10,6 @@ interface SearchProps {
 const Search = ({ tracks, changeTrack }: SearchProps) => {
 
   const [search, setSearch] = useState("")
-  const [historyTracks, setHistoryTracks] = useState([])
 
   const searchTrack = () => {
     if (search) {
@@ -23,7 +22,7 @@ const Search = ({ tracks, changeTrack }: SearchProps) => {
 
 
   return (
-    <div className='w-full h-full overflow-auto bg-yellow-700'>
+    <div className='w-full h-full overflow-auto'>
       <div>
         <input type="text" value={search} onChange={(e: any) => setSearch(e.target.value)} placeholder='Поиск треков' />
       </div>
