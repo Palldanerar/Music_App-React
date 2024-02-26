@@ -68,7 +68,7 @@ export const updateProfile = async (req, res) => {
 
     try {
         const { username, bio } = req.body;
-        const profileAvatar = req.file.path;
+        const profileAvatar = req.file.path || false;
         const userId = req.params.userId;
 
         const user = await User.findOne({ _id: userId });

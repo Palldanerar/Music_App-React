@@ -36,7 +36,7 @@ export const getPlaylistById = async (req, res) => {
 
         const _Id = req.params.playlistId;
 
-        const playlist = await Playlist.findOne({ _id: _Id }).populate('songs');
+        const playlist = await Playlist.findOne({ _id: _Id }).populate('songs').populate('creator');
 
         res.status(201).json(playlist);
 
@@ -80,3 +80,24 @@ export const addSongToPlaylist = async (req, res) => {
         res.status(500).json({ message: "Error Adding Songs To The Playlist" });
     }
 }
+
+export const removeSongFromPlaylist = async (req, res) => {
+    try {
+        const { songId } = req.body;
+        const playlistId = req.params.playlistId;
+
+        const playlist = await Playlist.findById(playlistId);
+
+        if (!playlist) {
+            return res.status(404).json({ message: "Playlist Not Found " });
+        }
+
+        playlist.songs.pull(songId);
+        await playlist.save();
+
+        res.status(200).json(playlist);
+    } catch (error) {
+        console.error("Error Deleting Songs From The Playlist: ", error);
+        res.status(500).json({ message: "Error Deleting Songs From The Playlist" });
+    }
+};

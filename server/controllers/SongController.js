@@ -3,7 +3,7 @@ import User from "../models/UserModel.js";
 
 export const getAllSongs = async (req, res) => {
     try {
-        const songs = await Song.find();
+        const songs = await Song.find().populate('owner');
         res.status(200).json({ songs });
     } catch (error) {
         console.error('Error Fetching All The Songs: ', error);
@@ -15,7 +15,7 @@ export const getSongById = async (req, res) => {
     try {
         const songId = req.params.songId;
 
-        const song = await Song.findOne({ songId });
+        const song = await Song.findOne({ songId }).populate('owner');
 
         if (!song) {
             return res.status(404).json({ song: [] });
@@ -38,6 +38,10 @@ export const uploadSong = async (req, res) => {
 
         if (!user) {
             return res.status(404).json({ message: "User Not Found" });
+        }
+
+        if (!user.isVerified) {
+            return res.status(404).json({ message: "User Not Verified" });
         }
 
         const newSong = new Song({
