@@ -2,7 +2,16 @@ import multer from "multer";
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
+        
         console.log(file)
+
+        if (file.fieldname == "songCover") {
+            cb(null, "uploads/songCover");
+        }
+
+        if (file.fieldname == "songFile") {
+            cb(null, "uploads/songFile");
+        }
 
         if (file.fieldname == "profileAvatar") {
             cb(null, "uploads/profileAvatar");

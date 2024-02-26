@@ -10,12 +10,12 @@ const songSchema = new mongoose.Schema({
         ref: 'User',
         required: true,
     },
-    SongCover: String,
+    songCover: String,
     audioURL: {
         type: String,
     },
 });
 
-const Playlist = mongoose.model('Playlist', playlistSchema);
+const Song = mongoose.model('Song', songSchema);
 
-export default Playlist;
+export default Song;

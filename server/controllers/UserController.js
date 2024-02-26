@@ -19,8 +19,8 @@ export const register = async (req, res) => {
         await newUser.save();
         res.status(201).json({ message: "User registered successfully!", user: newUser });
 
-    } catch (err) {
-        console.error("Error registering user: ", err);
+    } catch (error) {
+        console.error("Error registering user: ", error);
         res.status(500).json({ message: "Registration failed" });
     };
 };
@@ -41,8 +41,8 @@ export const login = async (req, res) => {
 
         res.status(200).json({ status: "success", user });
 
-    } catch (err) {
-        console.error("Error registering user: ", err);
+    } catch (error) {
+        console.error("Error registering user: ", error);
         res.status(500).json({ message: "Registration failed" });
     };
 };
@@ -58,8 +58,8 @@ export const profile = async (req, res) => {
         }
 
         res.status(200).json({ user });
-    } catch (err) {
-        console.error("Error Fetching Profile: ", err);
+    } catch (error) {
+        console.error("Error Fetching Profile: ", error);
         res.status(500).json({ message: "Profile Retrieval Failed" });
     }
 };

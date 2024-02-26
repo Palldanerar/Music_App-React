@@ -4,9 +4,9 @@ import { upload } from "../utils/upload.js";
 
 const router = express.Router()
 
+router.get('/profile/:userId', profile);
 router.post("/register", register);
 router.post("/login", login);
-router.get('/profile/:userId', profile);
 router.put('/profile/update/:userId', upload.single('profileAvatar'), updateProfile);
 
 export default router;
