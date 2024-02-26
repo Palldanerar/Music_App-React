@@ -31,6 +31,23 @@ export const createPlaylist = async (req, res) => {
     }
 }
 
+export const getPlaylistByCreator = async (req, res) => {
+    try {
+
+        const creator = req.params.creatorId;
+
+        console.log(creator)
+
+        const playlist = await Playlist.findOne({ creator: creator }).populate('songs').populate('creator');
+
+        res.status(201).json(playlist);
+
+    } catch (error) {
+        console.error("Error Getting Playlist: ", error);
+        res.status(500).json({ message: "Error Getting Playlist" });
+    }
+}
+
 export const getPlaylistById = async (req, res) => {
     try {
 
@@ -49,7 +66,6 @@ export const getPlaylistById = async (req, res) => {
 export const addSongToPlaylist = async (req, res) => {
     try {
         const { songId } = req.body;
-        console.log(req.body)
         const playlistId = req.params.playlistId;
 
         const playlist = await Playlist.findById(playlistId);

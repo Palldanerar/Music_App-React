@@ -19,7 +19,7 @@ app.use(express.json());
 app.use(cors())
 app.use("/users", UserRouter);
 app.use("/songs", SongRouter)
-app.use("/playlist", PlaylistRoutes)
+app.use("/playlists", PlaylistRoutes)
 app.use("/uploads", express.static('uploads'));
 
 app.listen(4800, () => {
