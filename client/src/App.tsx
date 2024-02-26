@@ -1,43 +1,35 @@
-import { useState } from "react"
-import ListTrack from "./components/ListTrack"
-import TrackBlock from "./components/TrackBlock"
-import { tracksList } from "../tracks.ts"
-import ITrack from "./interface/ITrack.ts"
-import Header from "./components/Header.tsx"
-import Sidebar from "./components/Sidebar.tsx"
-import Player from "./components/Player.tsx"
-import { Route, Routes } from "react-router-dom"
-import Search from "./components/Search.tsx"
-import Library from "./components/Library.tsx"
-
+import { useEffect, useState } from "react"
+import Main from "./components/Main"
+import Player from "./components/Player"
+import Sidebar from "./components/Sidebar"
+import axios from "axios"
 
 function App() {
 
-  const [tracks, setTracks] = useState<ITrack[]>(tracksList)
-  const [activeTrack, setActiveTrack] = useState<ITrack>()
-  const [activeBlock, setActiveBlock] = useState("Main")
+  const [songs, setSongs] = useState([])
 
-  const changeTrack = (track: ITrack) => {
-    setActiveTrack(track)
+  const getAllSongs = async () => {
+    const responce = await axios.get("http://localhost:4800/songs")
+    setSongs(responce.data.songs)
   }
 
+  useEffect(() => {
+    getAllSongs()
+  }, [])
+
   return (
-    <div className="w-full h-screen bg-[#121212]">
-      <Header />
-      <div className="w-full flex music_block">
-        <div className="w-1/5">
+    <div className="w-full h-screen bg-green-300">
+      <div className="app_screen w-full flex">
+        <div className="w-1/5 h-full">
           <Sidebar />
         </div>
-        <div className="w-4/5">
-          <Routes>
-            <Route path="/" element={<ListTrack tracks={tracks} changeTrack={changeTrack} />} />
-            <Route path="/search" element={<Search tracks={tracks} changeTrack={changeTrack} />} />
-            <Route path="/library" element={<Library />} />
-            <Route path="/track" element={<TrackBlock track={activeTrack} />} />
-          </Routes>
+        <div className="w-4/5 h-full">
+          <Main songs={songs} />          
         </div>
       </div>
-      <Player track={activeTrack} />
+      <div className="w-full h-[80px] bg-red-600">
+        <Player />
+      </div>
     </div>
   )
 }
