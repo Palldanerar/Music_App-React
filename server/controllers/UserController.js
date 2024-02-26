@@ -51,7 +51,7 @@ export const profile = async (req, res) => {
     try {
         const _Id = req.params.userId;
 
-        const user = await User.findOne({ _id: _Id });
+        const user = await User.findOne({ _id: _Id }).populate('uploadedSongs').populate("createdPlaylists");
 
         if (!user) {
             res.status(404).json({ message: "User Not Found!!" });

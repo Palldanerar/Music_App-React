@@ -5,6 +5,10 @@ const storage = multer.diskStorage({
         
         console.log(file)
 
+        if (file.fieldname == "playlistCover") {
+            cb(null, "uploads/playlistCover");
+        }
+
         if (file.fieldname == "songCover") {
             cb(null, "uploads/songCover");
         }
