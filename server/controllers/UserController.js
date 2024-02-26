@@ -3,9 +3,6 @@ import User from "../models/UserModel.js"
 export const register = async (req, res) => {
     try {
 
-        console.log(1)
-        console.log(req.body)
-
         const { username, email, password } = req.body;
 
         const existingUser = await User.findOne({ email });
@@ -52,7 +49,7 @@ export const login = async (req, res) => {
 
 export const profile = async (req, res) => {
     try {
-        const _Id = req.user._id;
+        const _Id = req.params.userId;
 
         const user = await User.findOne({ _id: _Id });
 
@@ -68,25 +65,27 @@ export const profile = async (req, res) => {
 };
 
 export const updateProfile = async (req, res) => {
+
     try {
-      const { username, profilePicture, bio } = req.body;
-      const userId = req.user._id;
-  
-      const user = await User.findOne({ _id: userId });
-  
-      if (!user) {
-        res.status(404).json({ message: "User Not Found!" });
-      }
-  
-      if (username) user.username = username;
-      if (profilePicture) user.profilePicture = profilePicture;
-      if (bio) user.bio = bio;
-  
-      await user.save();
-  
-      res.status(200).json({ message: "Profile Updated Successfully!", user });
+        const { username, bio } = req.body;
+        const profileAvatar = req.file.path;
+        const userId = req.params.userId;
+
+        const user = await User.findOne({ _id: userId });
+
+        if (!user) {
+            res.status(404).json({ message: "User Not Found!" });
+        }
+
+        if (username) user.username = username;
+        if (profileAvatar) user.profileAvatar = profileAvatar;
+        if (bio) user.bio = bio;
+
+        await user.save();
+
+        res.status(200).json({ message: "Profile Updated Successfully!", user });
     } catch (error) {
-      console.error("Error Updating Profile: ", error);
-      res.status(500).json({ message: "Profile Updation Failed!" });
+        console.error("Error Updating Profile: ", error);
+        res.status(500).json({ message: "Profile Updation Failed!" });
     }
-  };
+};
