@@ -6,11 +6,16 @@ import useSongStore from "./store/activeSong.ts"
 import axios from "axios"
 import { Route, Routes } from "react-router-dom"
 import PlaylistPage from "./components/PlaylistPage.tsx"
-import UserPage from "./components/UserPage.tsx"
+import Profile from "./components/Profile.tsx"
+import AuthModal from "./components/AuthModal.tsx"
+import useAuthModal from "./store/useAuthModal.ts"
+import useRegisterhModal from "./store/useRegisterModal.ts"
+import RegisterModal from "./components/RegisterModal.tsx"
 
 function App() {
 
-  const [user, setUser] = useState({})
+  const { isOpenAuth } = useAuthModal();
+  const { isOpenRegister } = useRegisterhModal()
   const [songs, setSongs] = useState([])
   const [playlists, setPlaylists] = useState([])
 
@@ -28,29 +33,25 @@ function App() {
     console.log(playlists)
   }
 
-  const getUser = async () => {
-    const responce = await axios.get(`http://localhost:4800/users/profile/65dcc5af353c2b0e9bd3ccd8`)
-    setUser(responce.data.user)
-  }
-
   useEffect(() => {
     getAllSongs()
     getAllPlaylists()
-    getUser()
   }, [])
 
   return (
     <div className="w-full h-screen">
+      {isOpenAuth && <AuthModal />}
+      {isOpenRegister && <RegisterModal />}
       <div className="app_screen w-full flex">
         <div className="w-1/5 h-full">
-          <Sidebar user={user} />
+          <Sidebar />
         </div>
         <div className="w-4/5 h-full">
           <Routes>
             <Route path="/" element={<Main playlists={playlists} songs={songs} />} />
             <Route path="/playlist/:id" element={<PlaylistPage />} />
-            <Route path="/profile/:id" element={<UserPage />} />
-          </Routes>          
+            <Route path="/profile/:id" element={<Profile />} />
+          </Routes>
         </div>
       </div>
       <div className="w-full h-[90px] bg-red-600">
