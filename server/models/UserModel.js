@@ -34,6 +34,10 @@ const userSchema = new mongoose.Schema({
     uploadedSongs: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Song',
+    }],
+    favoritesSongs: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Song',
     }]
 });
 
