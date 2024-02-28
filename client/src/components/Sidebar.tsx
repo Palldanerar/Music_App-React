@@ -15,6 +15,9 @@ const Sidebar = () => {
             <h2 className='cursor-pointer'>Мой профиль</h2>
           </Link>
           <h2 className='cursor-pointer'>Избранное</h2>
+          <Link to="/studio">
+            <h2 className='cursor-pointer'>Студия</h2>
+          </Link>
           <h2 className='cursor-pointer'>Мои плейлисты</h2>
           <div>
             {user?.createdPlaylists?.map((playlist) => {

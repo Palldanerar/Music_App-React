@@ -11,6 +11,7 @@ import AuthModal from "./components/AuthModal.tsx"
 import useAuthModal from "./store/useAuthModal.ts"
 import useRegisterhModal from "./store/useRegisterModal.ts"
 import RegisterModal from "./components/RegisterModal.tsx"
+import Studio from "./components/Studio.tsx"
 
 function App() {
 
@@ -51,6 +52,7 @@ function App() {
             <Route path="/" element={<Main playlists={playlists} songs={songs} />} />
             <Route path="/playlist/:id" element={<PlaylistPage />} />
             <Route path="/profile/:id" element={<Profile />} />
+            <Route path="/studio" element={<Studio />} />
           </Routes>
         </div>
       </div>
