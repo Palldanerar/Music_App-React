@@ -31,12 +31,23 @@ export const createPlaylist = async (req, res) => {
     }
 }
 
+export const getAllPlaylists = async (req, res) => {
+    try {
+
+        const playlists = await Playlist.find().populate("songs").populate('creator');
+
+        res.status(201).json(playlists);
+
+    } catch (error) {
+        console.error("Error Getting Playlists: ", error);
+        res.status(500).json({ message: "Error Getting Playlists" });
+    }
+}
+
 export const getPlaylistByCreator = async (req, res) => {
     try {
 
         const creator = req.params.creatorId;
-
-        console.log(creator)
 
         const playlist = await Playlist.findOne({ creator: creator }).populate('songs').populate('creator');
 

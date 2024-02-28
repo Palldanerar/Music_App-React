@@ -8,7 +8,6 @@ const Player = ({ activeSong }) => {
       <AudioPlayer
         autoPlay
         src={"http://localhost:4800/" + activeSong.audioURL}
-        onPlay={e => console.log("onPlay")}
       />
     </div>
   )

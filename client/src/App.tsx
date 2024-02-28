@@ -4,10 +4,14 @@ import Player from "./components/Player"
 import Sidebar from "./components/Sidebar"
 import useSongStore from "./store/activeSong.ts"
 import axios from "axios"
+import { Route, Routes } from "react-router-dom"
+import PlaylistPage from "./components/PlaylistPage.tsx"
+import UserPage from "./components/UserPage.tsx"
 
 function App() {
 
   const [songs, setSongs] = useState([])
+  const [playlists, setPlaylists] = useState([])
 
   const { activeSong } = useSongStore()
 
@@ -17,8 +21,15 @@ function App() {
     console.log(songs)
   }
 
+  const getAllPlaylists = async () => {
+    const responce = await axios.get("http://localhost:4800/playlists")
+    setPlaylists(responce.data)
+    console.log(playlists)
+  }
+
   useEffect(() => {
     getAllSongs()
+    getAllPlaylists()
   }, [])
 
   return (
@@ -28,10 +39,14 @@ function App() {
           <Sidebar />
         </div>
         <div className="w-4/5 h-full">
-          <Main songs={songs} />          
+          <Routes>
+            <Route path="/" element={<Main playlists={playlists} songs={songs} />} />
+            <Route path="playlist/:id" element={<PlaylistPage />} />
+            <Route path="profile/:id" element={<UserPage />} />
+          </Routes>          
         </div>
       </div>
-      <div className="w-full h-[80px] bg-red-600">
+      <div className="w-full h-[90px] bg-red-600">
         <Player activeSong={activeSong} />
       </div>
     </div>
