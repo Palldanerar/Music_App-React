@@ -25,12 +25,12 @@ const AuthPage = () => {
   }
 
   return (
-    <div className='w-full h-full flex justify-center items-center bg-red-200 absolute z-10'>
-      <div className='w-[600px] h-auto p-4 bg-white flex flex-col rounded-sm'>
-        <h2>Войти</h2>
-        <input type="text" value={email} onChange={(e) => { setEmail(e.target.value) }} placeholder='Email...' />
-        <input type="text" value={password} onChange={(e) => { setPassword(e.target.value) }} placeholder='Пароль...' />
-        <button onClick={login} className='bg-red-400'>Войти</button>
+    <div className='w-full h-full flex justify-center items-center bg-[#E6444F] absolute z-10'>
+      <div className='w-[600px] h-auto p-4 bg-white flex flex-col rounded-sm opacity-100 gap-y-2'>
+        <h2 className='text-center'>Войти</h2>
+        <input type="text" className='w-full p-2 rounded-lg border-solid border-2' value={email} onChange={(e) => { setEmail(e.target.value) }} placeholder='Email...' />
+        <input type="password" className='w-full p-2 rounded-lg border-solid border-2' value={password} onChange={(e) => { setPassword(e.target.value) }} placeholder='Пароль...' />
+        <button onClick={login} className='bg-[#E6444F] text-white p-2 rounded-lg'>Войти</button>
       </div>
     </div>
   )

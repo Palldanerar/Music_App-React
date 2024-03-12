@@ -11,20 +11,22 @@ const PlaylistPage = () => {
     const getPlaylist = async () => {
         const responce = await axios.get(`http://localhost:4800/playlists/${id}`)
         setPlaylists(responce.data)
+        console.log(1)
     }
 
     useEffect(() => {
         getPlaylist()
-    }, [])
+    }, [id])
 
 
     return (
-        <div>
+        <div className='p-2'>
             <div>
-                {playlist.title}
+                <h2>Название плейлиста: {playlist.title}</h2>
+                <h2>Треки</h2>
             </div>
             <div>
-                <div className='flex gap-x-10 p-5'>
+                <div className='flex gap-x-10'>
                     {playlist.songs?.map((song) => {
                         return (
                             <SongBlock song={song} />

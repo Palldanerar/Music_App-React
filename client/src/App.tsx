@@ -12,11 +12,14 @@ import useAuthModal from "./store/useAuthModal.ts"
 import useRegisterhModal from "./store/useRegisterModal.ts"
 import RegisterModal from "./components/RegisterModal.tsx"
 import Studio from "./components/Studio.tsx"
+import usePlaylistModal from "./store/usePlaylistModal.ts"
+import PlaylistModal from "./components/PlaylistModal.tsx"
 
 function App() {
 
   const { isOpenAuth } = useAuthModal();
   const { isOpenRegister } = useRegisterhModal()
+  const { isOpenPlaylist } = usePlaylistModal()
   const [songs, setSongs] = useState([])
   const [playlists, setPlaylists] = useState([])
 
@@ -43,6 +46,7 @@ function App() {
     <div className="w-full h-screen">
       {isOpenAuth && <AuthModal />}
       {isOpenRegister && <RegisterModal />}
+      {isOpenPlaylist && <PlaylistModal />}
       <div className="app_screen w-full flex">
         <div className="w-1/5 h-full">
           <Sidebar />

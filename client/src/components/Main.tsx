@@ -21,9 +21,9 @@ const Main = ({ songs, playlists }) => {
     return (
         <div className='w-full h-full overflow-auto'>
             <div>
-                <div className='w-full h-auto flex gap-x-3'>
-                    <p  className='text-xl cursor-pointer' onClick={toggleSongs}>Треки</p>
-                    <p className='text-xl cursor-pointer' onClick={togglePlaulists}>Альбомы</p>
+                <div className='w-full h-auto justify-center flex gap-x-3'>
+                    <p style={{color: showSongs ? '#E6444F' : ''}} className='text-xl cursor-pointer' onClick={toggleSongs}>Треки</p>
+                    <p style={{color: showPlaylists ? '#E6444F' : ''}}  className='text-xl cursor-pointer' onClick={togglePlaulists}>Альбомы</p>
                 </div>
                {showPlaylists && <div className='flex gap-x-10 p-5'>
                     {playlists.map((playlist) => {

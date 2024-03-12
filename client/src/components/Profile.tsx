@@ -22,20 +22,19 @@ const Profile = () => {
   }, [])
 
   return (
-    <div className='w-full h-full overflow-auto'>
+    <div className='w-full h-full overflow-auto p-2'>
       <div className='flex flex-col h-auto'>
         <div className='flex'>
           <img src={"http://localhost:4800/" + user.profileAvatar} alt="" />
           <div>
-            <h1>{user.username}</h1>
-            <p>{user.bio}</p>
+            <h1>Имя пользователя: {user.username}</h1>
           </div>
         </div>
       </div>
-      <div className='bg-red-400'>
+      <div>
         <div className='flex flex-col'>
           <h2>Плейлисты</h2>
-          <div>
+          <div className='flex gap-x-10'>
             {user.createdPlaylists?.map((playlist) => {
               return (
                 <PlaylistBlock playlist={playlist} />
@@ -45,7 +44,7 @@ const Profile = () => {
         </div>
         <div className='flex flex-col mt-2'>
           <h2>Треки</h2>
-          <div>
+          <div className='flex gap-x-10'>
             {user.uploadedSongs?.map((song) => {
               return (
                 <SongBlock song={song} />
